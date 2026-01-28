@@ -1,10 +1,10 @@
 package com.empresa.emprestimos.repository;
 
+import com.empresa.emprestimos.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.empresa.emprestimos.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    Cliente findByCpf(String cpf);
+    Cliente findByCpfAndSenha(String cpf, String senha);
 }

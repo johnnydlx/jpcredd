@@ -1,28 +1,21 @@
 package com.empresa.emprestimos.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.empresa.emprestimos.model.Cliente;
 import com.empresa.emprestimos.repository.ClienteRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ClienteService {
 
-    private final ClienteRepository repository;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepository repository) {
-        this.repository = repository;
-    }
-
-    public Cliente salvar(Cliente cliente) {
-        if (repository.existsByCpf(cliente.getCpf())) {
-            throw new RuntimeException("CPF já cadastrado");
+    public boolean validarLogin(String cpf, String senha) {
+        Cliente cliente = clienteRepository.findByCpf(cpf);
+        if (cliente != null && cliente.getSenha().equals(senha)) {
+            return true;
         }
-        return repository.save(cliente);
-    }
-
-    public List<Cliente> listar() {
-        return repository.findAll();
+        return false;
     }
 }
