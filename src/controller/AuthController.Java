@@ -1,6 +1,6 @@
 package com.empresa.emprestimos.controller;
 
-import com.empresa.emprestimos.model.Cliente;
+import com.empresa.emprestimos.model.Usuario;
 import com.empresa.emprestimos.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +23,12 @@ public class AuthController {
             String cpf = body.get("cpf");
             String senha = body.get("senha");
 
-            Cliente cliente = authService.login(cpf, senha);
+            Usuario usuario = authService.login(cpf, senha);
 
-            // Aqui podemos retornar dados do cliente ou token se houver JWT
             return ResponseEntity.ok(Map.of(
-                "id", cliente.getId(),
-                "nome", cliente.getNome(),
-                "cpf", cliente.getCpf()
+                "id", usuario.getId(),
+                "nome", usuario.getNome(),
+                "cpf", usuario.getCpf()
             ));
         } catch (Exception e) {
             return ResponseEntity.status(401).body(Map.of("error", e.getMessage()));

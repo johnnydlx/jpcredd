@@ -1,17 +1,13 @@
-import Sidebar from '../components/Sidebar';
+import React from "react";
+import "./Dashboard.css";
 
-export default function Dashboard() {
+export default function Dashboard({ user }) {
   return (
-    <div className="flex">
-      <Sidebar />
-      <div className="flex-1 p-8 bg-gray-100 min-h-screen">
-        <h2 className="text-3xl font-bold mb-6">Bem-vindo ao Dashboard</h2>
-        <div className="grid grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded shadow">Total de Clientes</div>
-          <div className="bg-white p-6 rounded shadow">Total de Empréstimos</div>
-          <div className="bg-white p-6 rounded shadow">Pagamentos Pendentes</div>
-        </div>
-      </div>
+    <div className="dashboard-container">
+      <h1>Bem-vindo, {user.nome}</h1>
+      <p>CPF: {user.cpf}</p>
+      <p>ID do usuário: {user.id}</p>
+      <p>Este é o seu dashboard!</p>
     </div>
   );
 }
